@@ -1,0 +1,27 @@
+{
+    "name": "cmq2080/toolkit_for_thinkphp6",
+    "description": "toolkit for thinkphp6.x",
+    "type": "library",
+    "keywords": [
+        "thinkphp",
+        "toolkit"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "cmq2080",
+            "email": "cmq2080@gmail.com"
+        }
+    ],
+    "require": {
+        "topthink/framework": "^6.0.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "app\\": "src/app"
+        },
+        "psr-0": {
+            "": "src/extend/"
+        }
+    }
+}
