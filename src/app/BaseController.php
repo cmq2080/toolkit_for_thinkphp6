@@ -97,11 +97,22 @@ abstract class BaseController
     /************Custom************/
     public function success($msg = '成功', $data = [])
     {
+        if (is_array($msg) || is_object($msg)) { // 错位调置
+            $data = $msg;
+            $msg = '成功';
+        }
         Response::success($msg, $data);
     }
 
     public function error($msg = '错误', $code = 0, $data = [])
     {
+        if (is_array($msg) || is_object($msg)) { // 错位调置
+            $data = $msg;
+            $msg = '错误';
+        } else if (is_int($msg)) { // 错位调置
+            $code = $msg;
+            $msg = '错误';
+        }
         Response::error($msg, $code, $data);
     }
 }

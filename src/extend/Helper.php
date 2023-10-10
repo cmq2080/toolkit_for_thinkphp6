@@ -1,4 +1,5 @@
 <?php
+
 class Helper
 {
     public static function getTime($as_float = false)
@@ -13,7 +14,7 @@ class Helper
         return $timestamp;
     }
 
-    public static function getDate($fmt = 's')
+    public static function getDate($fmt = 's', $timestamp = null)
     {
         $fmtList = [
             'Y', 'm', 'd', 'H', 'i', 's'
@@ -22,7 +23,9 @@ class Helper
             return false;
         }
 
-        $timestamp = time();
+        if ($timestamp === null) {
+            $timestamp = time();
+        }
         switch ($fmt) {
             case 'Y':
                 return date('Y', $timestamp);
