@@ -30,7 +30,7 @@ class PayTool
 
         $mchNo = 'FFFF';
         if ($tradeNo || strlen($tradeNo) >= 7) {
-            $mchNo = substr($tradeNo, 3, 4);
+            $mchNo = substr($tradeNo, 2, 4);
         }
         $timeNo = date('YmdHis');
 
