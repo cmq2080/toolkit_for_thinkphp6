@@ -70,6 +70,17 @@ class Helper
         return $map[$key] ?? $default;
     }
 
+    public static function array_filter_null($haystack)
+    {
+        foreach ($haystack as $key => $value) {
+            if ($value === null) {
+                unset($haystack[$key]);
+            }
+        }
+
+        return $haystack;
+    }
+
     public static function getFullUrl($uri)
     {
         if (strpos($uri, 'http') === 0) {
@@ -78,5 +89,13 @@ class Helper
 
         $url = rtrim(request()->domain(), '/') . '/' . ltrim($uri, '/');
         return $url;
+    }
+
+    public static function getPageParams()
+    {
+        $page = request()->param('page', 1);
+        $limit = request()->param('page', 15);
+
+        return [$page, $limit];
     }
 }
