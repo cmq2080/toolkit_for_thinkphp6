@@ -93,8 +93,8 @@ class Helper
 
     public static function getPageParams()
     {
-        $page = request()->param('page', 1);
-        $limit = request()->param('page', 15);
+        $page = request()->param('page/d', 1);
+        $limit = request()->param('limit/d', 15);
 
         return [$page, $limit];
     }
