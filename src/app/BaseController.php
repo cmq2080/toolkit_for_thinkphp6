@@ -97,22 +97,35 @@ abstract class BaseController
     /************Custom************/
     public function success($msg = '成功', $data = [])
     {
-        if (is_array($msg) || is_object($msg)) { // 错位调置
-            $data = $msg;
-            $msg = '成功';
-        }
+        $code = 1;
+        $this->exchangeParams($msg, $code, $data);
         Response::success($msg, $data);
     }
 
     public function error($msg = '错误', $code = 0, $data = [])
     {
+        $this->exchangeParams($msg, $code, $data);
+        Response::error($msg, $code, $data);
+    }
+
+    public function success_json($msg = '成功', $data = [])
+    {
+        $code = 1;
+        $this->exchangeParams($msg, $code, $data);
+        return json(['code' => $code, 'msg' => $msg, 'data' => $data]);
+    }
+
+    public function error_json($msg = '错误', $code = 0, $data = [])
+    {
+        $this->exchangeParams($msg, $code, $data);
+        return json(['code' => $code, 'msg' => $msg, 'data' => $data]);
+    }
+
+    protected function exchangeParams(&$msg, &$code, &$data)
+    {
         if (is_array($msg) || is_object($msg)) { // 错位调置
             $data = $msg;
-            $msg = '错误';
-        } else if (is_int($msg)) { // 错位调置
-            $code = $msg;
-            $msg = '错误';
+            $msg = $code == 1 ? '成功' : '错误';
         }
-        Response::error($msg, $code, $data);
     }
 }
